@@ -36,5 +36,5 @@ app.listen(PORT, function (err) {
 });
 
 // mongoose.connect('mongodb://localhost/my_database'); //mongodb://heroku_lcx22brw:3oi1sphbf6kuc3504h0t6rpkqv@ds115712.mlab.com:15712/heroku_lcx22brw
-
-mongoose.connect('mongodb://localhost/my_database');
+mongoose.connect('mongodb://heroku_lcx22brw:3oi1sphbf6kuc3504h0t6rpkqv@ds115712.mlab.com:15712/heroku_lcx22brw');
+// mongoose.connect('mongodb://localhost/my_database');
