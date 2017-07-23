@@ -42,7 +42,6 @@ module.exports = function (app) {
     });
     //Database Query - Notes for single recipe
     app.get('/notes/:id', function (req, res) {
-        console.log(req.params.id);
         Recipe.findOne({
             "_id": req.params.id
         }).populate("notes").exec(function (error, doc) {
@@ -89,13 +88,21 @@ module.exports = function (app) {
         });
     });
 
-    app.delete('/delete/:id', function (req, res) {
+    //Delete Favorite Recipe Route
+    app.delete('/favorite/:id', function (req, res) {
+        let favoriteID = req.params.id;
+        Recipe.remove({
+            _id: favoriteID
+        }, (error, doc) => {
+        });
+    });
+
+    //Delete Notes Route
+    app.delete('/note/:id', function (req, res) {
         let noteID = req.params.id;
-        console.log(noteID);
         Note.remove({
             _id: noteID
         }, (error, doc) => {
-            // console.log(doc);
         });
     });
 

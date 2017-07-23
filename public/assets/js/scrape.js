@@ -6,7 +6,7 @@ $(".scrapeBtn").on("click", () => {
 
 let appendFood = (data) => {
     data.forEach((singleRecipe) => {
-        let row = $(`<div class="row itemRow" data-id="${singleRecipe.id}">`);
+        let row = $(`<div class="row itemRow" id="${singleRecipe.id}" data-id="${singleRecipe.id}" style="border-bottom: 1px solid black; padding-top: 15px">`);
         let image = $(`<div class="col-md-2"><a href=${singleRecipe.url} target="_blank"><img class="img-responsive" src="${singleRecipe.thumbnail}" width="100" height="80"></a></div>`);
         let title = $(`<div class="col-md-10"><h3 class="text-primary" style="margin-top: 0;">${singleRecipe.title}</h3></div>`);
         let favoriteBtn = $(`<button class="btn btn-primary favBtn" 
@@ -19,7 +19,6 @@ let appendFood = (data) => {
         row.append(image);
         row.append(title);
         $(".foodItems").append(row);
-        $(".foodItems").append(`<hr>`);
     });
 };
 
@@ -40,12 +39,14 @@ let obtainFood = () => {
 };
 
 let addToFavorites = (event) => {
+    let id = $(event.currentTarget).data("reddit");
     $.post("/favorite", {
         title: $(event.currentTarget).data("title"),
         url: $(event.currentTarget).data("url"),
         thumbnail: $(event.currentTarget).data("thumbnail"),
-        redditID: $(event.currentTarget).data("reddit")
+        redditID: id
     });
+    $(`#${id}`).remove();
 };
 
 $(".foodItems").on("click", ".favBtn", addToFavorites);
