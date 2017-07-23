@@ -1,0 +1,66 @@
+<div class="container">
+    {{!-- NAVBAR --}}
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+                    aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+                <a class="navbar-brand" href="/">Foodit</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li><a href="/">Home</a></li>
+                    <li class="active"><a href="/favorite">Favorites</a></li>
+                    <li><a href="#about">About</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="active"><a class="scrapeBtn btn">Scrape <span class="sr-only">(current)</span></a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <h2 class="text-center text-primary">Favorites</h2>
+
+    {{!-- FAVORITE ITEMS APPEND HERE --}}
+    <div class="favItems col-lg-12">
+    </div>
+
+    {{!-- MODAL HERE --}}
+    <!-- Trigger the modal with a button -->
+    {{!-- <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>    --}}
+
+    <!-- Modal -->
+    <div id="noteModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title notes-title">Your Notes</h4>
+                </div>
+                <div class="modal-body col-lg-12">
+                    <div class="notes-body col-lg-12"></div>
+                    <div class="noteBox">
+                        <label for="comment">Enter Notes:</label>
+                        <textarea class="form-control noteInput" rows="5" id="comment"></textarea>
+                        <button class="btn btn-primary addNoteBtn">Add Note</button>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+
+
+</div>
+<script src="../../assets/js/favorite.js"></script>
