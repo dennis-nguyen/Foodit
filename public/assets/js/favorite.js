@@ -1,9 +1,10 @@
+//Grabs Recipes from Favorite DB
 let getFavorites = () => {
     $.get(`/favorite/api`, function (data) {
         appendFavorites(data);
     });
 };
-
+//Appends Favorite Recipes to screen
 let appendFavorites = (data) => {
     data.forEach((singleRecipe) => {
         let row = $(`<div class="row itemRow" id="${singleRecipe._id}" style="border-bottom: 1px solid black; padding-top: 15px">`);
@@ -22,16 +23,15 @@ let appendFavorites = (data) => {
         $(".favItems").append(row);
     });
 };
-
+//Grabs Notes from Notes DB
 let getNotes = (event) => {
     let currentNote = $(event.currentTarget).data("id");
-    console.log(currentNote);
     $.get(`/notes/${currentNote}`, function (data) {
         appendNotes(data);
     });
     $("#noteModal").modal('show');
 };
-
+//Route to add a single note to DB & also appends the note onto the screen
 let addNotes = (event) => {
     let note = $(".noteInput").val();
     let recipeID = $(event.currentTarget).data("id");
@@ -49,7 +49,7 @@ let addNotes = (event) => {
     });
 
 };
-
+//Appends notes to modal
 let appendNotes = (data) => {
     $(".notes-body").empty();
     $(".addNoteBtn").remove();
@@ -64,7 +64,7 @@ let appendNotes = (data) => {
         $(".notes-body").append(row);
     });
 };
-
+//Deletes note from DB then removes it from the modal
 let deleteNote = (event) => {
     let noteID = $(event.currentTarget).data("id");
     $.ajax({
@@ -74,7 +74,7 @@ let deleteNote = (event) => {
     $(`#${noteID}`).remove();
 
 };
-
+//Deletes favorite recipe from DB then removes it from the screen
 let deleteFavorite = (event) => {
     let favoriteID = $(event.currentTarget).data("id");
     $.ajax({
@@ -83,7 +83,7 @@ let deleteFavorite = (event) => {
     });
     $(`#${favoriteID}`).remove();
 };
-//click handlers
+//Event Delegation
 $(".favItems").on("click", ".noteBtn", getNotes);
 $(".favItems").on("click", ".deleteFav", deleteFavorite);
 $(".noteBox").on("click", ".addNoteBtn", addNotes);

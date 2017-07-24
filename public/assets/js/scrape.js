@@ -1,9 +1,23 @@
 let count = 25; //reddit counter for URL scraping
-
-$(".scrapeBtn").on("click", () => {
-    obtainFood();
-});
-
+//Get call to obtain scraped data
+let obtainFood = () => {
+    let lastIndex = $(".itemRow").length;
+    //If first scrape
+    if (lastIndex === 0) {
+        $.get(`/api/0`, function (data) {
+            appendFood(data);
+        });
+    } else {
+        //Not first scrape, modifies get call to obtain next reddit page
+        let lastID = $($(".itemRow")[lastIndex - 1]).data("id");
+        let page = `count=${count}&after=${lastID}`; //reddit specific url
+        $.get(`/api/${page}`, function (data) {
+            appendFood(data);
+        });
+        count += 25;
+    }
+};
+//Appends scraped data onto screen
 let appendFood = (data) => {
     data.forEach((singleRecipe) => {
         let row = $(`<div class="row itemRow" id="${singleRecipe.id}" data-id="${singleRecipe.id}" style="border-bottom: 1px solid black; padding-top: 15px">`);
@@ -21,23 +35,7 @@ let appendFood = (data) => {
         $(".foodItems").append(row);
     });
 };
-
-let obtainFood = () => {
-    let lastIndex = $(".itemRow").length;
-    if (lastIndex === 0) {
-        $.get(`/api/0`, function (data) {
-            appendFood(data);
-        });
-    } else {
-        let lastID = $($(".itemRow")[lastIndex - 1]).data("id");
-        let page = `count=${count}&after=${lastID}`; //reddit specific url
-        $.get(`/api/${page}`, function (data) {
-            appendFood(data);
-        });
-        count += 25;
-    }
-};
-
+//Adds recipe to favorite DB then removes it from page
 let addToFavorites = (event) => {
     let id = $(event.currentTarget).data("reddit");
     $.post("/favorite", {
@@ -48,5 +46,8 @@ let addToFavorites = (event) => {
     });
     $(`#${id}`).remove();
 };
-
+//Click handlers
 $(".foodItems").on("click", ".favBtn", addToFavorites);
+$(".scrapeBtn").on("click", () => {
+    obtainFood();
+});

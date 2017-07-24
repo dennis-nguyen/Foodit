@@ -11,10 +11,12 @@ module.exports = function (app) {
     //Sends Scrape Data
     app.get('/api/:page', function (req, res) {
         let page = req.params.page;
+        //first scrape
         if (page == "0") {
             let url = `https://www.reddit.com/r/GifRecipes/`;
             scrapeReddit(res, url);
         } else {
+            //not first scrape
             let url = `https://www.reddit.com/r/GifRecipes/?${page}`;
             scrapeReddit(res, url);
         }
@@ -26,7 +28,7 @@ module.exports = function (app) {
             if (err) {
                 console.log(err);
             } else {
-                console.log(doc);
+                // console.log(doc);
             }
         });
     });
@@ -45,15 +47,10 @@ module.exports = function (app) {
         Recipe.findOne({
             "_id": req.params.id
         }).populate("notes").exec(function (error, doc) {
-            // Send an error message to the browser
             if (error) {
-                // res.send(error);
                 console.log(error);
-            }
-            // Or send the doc to the browser
-            else {
+            } else {
                 res.send(doc);
-                // console.log(doc);
             }
         });
     });
@@ -87,35 +84,32 @@ module.exports = function (app) {
             }
         });
     });
-
     //Delete Favorite Recipe Route
     app.delete('/favorite/:id', function (req, res) {
         let favoriteID = req.params.id;
         Recipe.remove({
             _id: favoriteID
-        }, (error, doc) => {
-        });
+        }, (error, doc) => {});
     });
-
     //Delete Notes Route
     app.delete('/note/:id', function (req, res) {
         let noteID = req.params.id;
         Note.remove({
             _id: noteID
-        }, (error, doc) => {
-        });
+        }, (error, doc) => {});
     });
-
 };
-
+//Scrapes Reddit - only pushes sends recipes that have not been favorited
 let scrapeReddit = (res, url) => {
     let tempArray = [];
     let duplicateArray = [];
+    //Creates array with recipe reddit IDs from favorite DB
     Recipe.find({}, (error, doc) => {
         doc.forEach((singleFav) => {
             duplicateArray.push(singleFav.redditID);
         });
     });
+    //Scrape Function
     request(url, function (error, response, body) {
         const $ = cheerio.load(body);
         $("div.thing").each((i, element) => {
@@ -123,7 +117,7 @@ let scrapeReddit = (res, url) => {
             let thumbnail = $(element).children("a").children("img").attr("src");
             let url = $(element).attr("data-url");
             let dataID = $(element).attr("data-fullname");
-
+            //If condition - makes sure not already a favorited recipe
             if (thumbnail && duplicateArray.indexOf(dataID) == -1) {
                 tempArray.push({
                     "title": title,
@@ -133,9 +127,6 @@ let scrapeReddit = (res, url) => {
                 });
             }
         });
-        tempObj = {
-            "scrape": tempArray
-        };
         res.send(tempArray);
     });
 };
