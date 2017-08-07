@@ -1,29 +1,10 @@
-//Grabs Recipes from Favorite DB
-let getFavorites = () => {
-    $.get(`/favorite/api`, function (data) {
-        appendFavorites(data);
-    });
-};
-//Appends Favorite Recipes to screen
-let appendFavorites = (data) => {
-    data.forEach((singleRecipe) => {
-        let row = $(`<div class="row itemRow" id="${singleRecipe._id}" style="border-bottom: 1px solid black; padding-top: 15px">`);
-        let image = $(`<div class="col-md-2"><a href=${singleRecipe.url} target="_blank"><img class="img-responsive" src="${singleRecipe.thumbnail}" width="100" height="80"></a></div>`);
-        let title = $(`<div class="col-md-10"><h3 class="text-primary" style="margin-top: 0;">${singleRecipe.title}</h3></div>`);
-        let noteBtn = $(`<button class="btn btn-primary noteBtn" 
-                            data-title="${singleRecipe.title}" 
-                            data-url="${singleRecipe.url}"
-                            data-thumbnail="${singleRecipe.thumbnail}"
-                            data-id="${singleRecipe._id}">Add a Note</button>`);
-        let deleteBtn = $(`<button class="btn btn-danger deleteFav" data-id="${singleRecipe._id}">Remove from Favorites</button>`);
-        title.append(noteBtn);
-        title.append(deleteBtn);
-        row.append(image);
-        row.append(title);
-        $(".favItems").append(row);
-    });
-};
-//Grabs Notes from Notes DB
+$('.grid').masonry({
+  // options
+  itemSelector: '.grid-item',
+  columnWidth: 200
+});
+
+// Grabs Notes from Notes DB
 let getNotes = (event) => {
     let currentNote = $(event.currentTarget).data("id");
     $.get(`/notes/${currentNote}`, function (data) {
@@ -31,7 +12,7 @@ let getNotes = (event) => {
     });
     $("#noteModal").modal('show');
 };
-//Route to add a single note to DB & also appends the note onto the screen
+// Route to add a single note to DB & also appends the note onto the screen
 let addNotes = (event) => {
     let note = $(".noteInput").val();
     let recipeID = $(event.currentTarget).data("id");
@@ -89,4 +70,4 @@ $(".favItems").on("click", ".deleteFav", deleteFavorite);
 $(".noteBox").on("click", ".addNoteBtn", addNotes);
 $("body").on("click", ".deleteLine", deleteNote);
 
-getFavorites();
+// getFavorites();

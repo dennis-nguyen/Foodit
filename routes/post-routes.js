@@ -11,13 +11,14 @@ module.exports = function (app) {
     //Sends Scrape Data
     app.get('/api/:page', function (req, res) {
         let page = req.params.page;
+        let category = req.query.category;
         //first scrape
         if (page == "0") {
-            let url = `https://www.reddit.com/r/GifRecipes/`;
+            let url = `https://www.reddit.com/r/${category}/`;
             scrapeReddit(res, url);
         } else {
             //not first scrape
-            let url = `https://www.reddit.com/r/GifRecipes/?${page}`;
+            let url = `https://www.reddit.com/r/${category}/?${page}`;
             scrapeReddit(res, url);
         }
     });
@@ -34,7 +35,11 @@ module.exports = function (app) {
     });
     //Renders Favorite Page
     app.get('/favorite', function (req, res) {
-        res.render('favorite');
+        Recipe.find({}, (error, doc) => {
+            res.render('favorite', {
+                favorite: doc
+            });
+        });
     });
     //Database Query - All Favorites
     app.get('/favorite/api', function (req, res) {

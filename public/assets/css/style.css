@@ -1,0 +1,81 @@
+body {
+  background-image: url("https://static.pexels.com/photos/8542/wood-night-camera-vintage.jpg");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.jumbotron {
+    /* background-image: url("https://static.pexels.com/photos/442574/pexels-photo-442574.jpeg"); */
+    background-color: white;
+    margin-bottom: 5px;
+    min-height: 50%;
+    background-repeat: no-repeat;
+    background-position: center;
+    -webkit-background-size: cover;
+    background-size: cover;
+    color: black;
+    padding-bottom: 5px;
+    border: 1px solid #3D4A66;
+}
+
+.jumbotron > button {
+    opacity: 0.5;
+}
+
+.col-xs-5ths,
+.col-sm-5ths,
+.col-md-5ths,
+.col-lg-5ths {
+    position: relative;
+    min-height: 1px;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+.col-xs-5ths {
+    width: 20%;
+    float: left;
+}
+
+@media (min-width: 768px) {
+    .col-sm-5ths {
+        width: 20%;
+        float: left;
+    }
+}
+
+@media (min-width: 992px) {
+    .col-md-5ths {
+        width: 20%;
+        float: left;
+    }
+}
+
+@media (min-width: 1200px) {
+    .col-lg-5ths {
+        width: 20%;
+        float: left;
+    }
+}
+
+/* keeps modal from toggling to the top */
+
+body.modal-open {
+    overflow: visible;
+}
+
+.grid-item { 
+    width: 200px;
+    margin-bottom: 10px;
+    padding-bottom: 5px;
+}
+.grid-item--width2 { width: 400px; }
+
+ .white {
+    background-color: rgba(255,255,255,0.9);  
+} 

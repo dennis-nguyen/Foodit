@@ -1,5 +1,8 @@
 <div class="container">
-    {{!-- NAVBAR --}}
+    <br/>
+    <br/>
+    <br/>
+    <br/> {{!-- NAVBAR --}}
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -10,7 +13,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-                <a class="navbar-brand" href="/">Foodit</a>
+                <a class="navbar-brand" href="/">Jif</a>
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
@@ -18,16 +21,27 @@
                     <li class="active"><a href="/favorite">Favorites</a></li>
                     <li><a href="#about">About</a></li>
                 </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    <li class="active"><a class="scrapeBtn btn">Scrape <span class="sr-only">(current)</span></a></li>
-                </ul>
             </div>
         </div>
     </nav>
-    <h2 class="text-center text-primary">Favorites</h2>
+    <div class="jumbotron">
+        <h1 class="text-center">Your Collection.</h1>
+        <p class="text-center">Scraping Reddit so you can build your <i>Artisan</i> Gif Collection.</p>
+    </div>
 
     {{!-- FAVORITE ITEMS APPEND HERE --}}
-    <div class="favItems col-lg-12">
+    <div class="favItems grid col-lg-11 col-lg-offset-1">
+        {{!-- {{favorite}} --}} {{#each favorite}}
+        <div class="grid-item white img-rounded col-lg-12" id="{{_id}}" style="border-bottom: 1px solid black; padding-top: 15px">
+            <div class="col-lg-12"><a href="{{url}}" target="_blank"><img class="img-responsive" src="{{thumbnail}}"></a></div>
+            <div class="col-lg-12">
+                <h3 class="text-primary" style="margin-top: 0;">{{title}}</h3>
+            </div>
+            <button class="col-lg-6 btn btn-primary noteBtn" data-title="{{title}}" data-url="{{url}}" data-thumbnail="{{thumbnail}}"
+                data-id="{{_id}}">Add a Note</button>
+            <button class="col-lg-6 btn btn-danger deleteFav" data-id="{{_id}}">Delete</button>
+        </div>
+        {{/each}}
     </div>
 
     {{!-- MODAL HERE --}}
