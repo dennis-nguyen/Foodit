@@ -44,6 +44,10 @@ let appendNotes = (data) => {
         row.append(noteLine);
         $(".notes-body").append(row);
     });
+
+        $grid.imagesLoaded().progress(function () {
+        $grid.masonry('layout');
+    });
 };
 //Deletes note from DB then removes it from the modal
 let deleteNote = (event) => {
@@ -63,6 +67,9 @@ let deleteFavorite = (event) => {
         type: 'DELETE'
     });
     $(`#${favoriteID}`).remove();
+   $('.grid').imagesLoaded().progress(function () {
+        $('.grid').masonry('layout');
+    });
 };
 //Event Delegation
 $(".favItems").on("click", ".noteBtn", getNotes);
