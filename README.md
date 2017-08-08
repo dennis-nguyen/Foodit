@@ -1,7 +1,7 @@
 Jif
 ===============
 ### Summary
-Are you a gif lover and proud? Do you like collecting things without spending your hard earned cash? If you answered yes to those questions then **Jif** is the web app for you! **Jif** allows users to collect gifs from certain popular subreddits and add them to their collection.
+Are you a gif lover and proud? Do you like collecting things without spending your hard earned cash? If you answered yes to those questions then **Jif** is the web app for you! **Jif** allows users to collect gifs from certain popular subreddits and add them to their collection. You can start by clicking one of the category buttons!
 
 ### Feature List
 - **Jif** pulls from 5 different gif subreddits so users can create a collection of their favorite gifs in once place. 
