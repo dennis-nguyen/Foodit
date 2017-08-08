@@ -1,8 +1,5 @@
 <div class="container">
-    <br/>
-    <br/>
-    <br/>
-    <br/> {{!-- NAVBAR --}}
+{{!-- NAVBAR --}}
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -24,27 +21,29 @@
             </div>
         </div>
     </nav>
+    
     <div class="jumbotron">
         <h1 class="text-center">Collection.</h1>
         <p class="text-center">Gotta Collect 'Em All</p>
+        <br/>
     </div>
 
     {{!-- FAVORITE ITEMS APPEND HERE --}}
     <div class="favItems grid col-lg-11 col-lg-offset-1">
-        {{!-- {{favorite}} --}} {{#each favorite}}
-        <div class="grid-item white img-rounded col-lg-12" id="{{_id}}" style="border-bottom: 1px solid black; padding-top: 15px">
-            <div class="col-lg-12"><a href="{{url}}" target="_blank"><img class="img-responsive" src="{{thumbnail}}"></a></div>
+        {{#each favorite}}
+        <div class="grid-item white img-rounded col-lg-12 text-center" id="{{_id}}">
+            <div class="col-lg-12"><a href="{{url}}" target="_blank"><img class="img-responsive pop" src="{{thumbnail}}" data-url="{{url}}"></a></div>
             <div class="col-lg-12">
-                <h3 class="text-primary" style="margin-top: 0;">{{title}}</h3>
+                <h4 class="gifTitle text-default">{{title}}</h4>
             </div>
-            <button class="col-lg-9 btn btn-info noteBtn" data-title="{{title}}" data-url="{{url}}" data-thumbnail="{{thumbnail}}"
-                data-id="{{_id}}">Notes</button>
-            <button class="col-lg-3 btn btn-primary deleteFav" data-id="{{_id}}"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>
+            <button class="col-lg-4 btn btn-info noteBtn" data-title="{{title}}" data-url="{{url}}" data-thumbnail="{{thumbnail}}" data-id="{{_id}}"><i class="fa fa-pencil"></i></button>
+            <a href="{{urlComments}}" target="_blank"><button class="col-lg-4 btn btn-default"><i class="fa fa-reddit-alien"></i></button></a>
+            <button class="col-lg-4 btn btn-primary deleteFav" data-id="{{_id}}"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>
         </div>
         {{/each}}
     </div>
 
-    {{!-- MODAL HERE --}}
+    {{!-- Notes Modal --}}
     <div id="noteModal" class="modal fade" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -57,8 +56,26 @@
                     <div class="noteBox">
                         <label for="comment">Enter Notes:</label>
                         <textarea class="form-control noteInput" rows="5" id="comment"></textarea>
-                        <button class="btn btn-primary addNoteBtn">Add Note</button>
+                        <button class="btn btn-info addNoteBtn">Add Note</button>
                     </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        <!-- Modal where the gif will appear -->
+    <div class="modal fade" id="imagemodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    {{!-- <h4 class="modal-title" id="myModalLabel">Image preview</h4> --}}
+                </div>
+                <div class="modal-body text-center">
+                    <img src="" id="imagepreview" style="width: 400px; height: 264px;">
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

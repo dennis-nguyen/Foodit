@@ -12,6 +12,7 @@ body {
 .jumbotron {
     /* background-image: url("https://static.pexels.com/photos/442574/pexels-photo-442574.jpeg"); */
     background-color: white;
+    margin-top: 70px;
     margin-bottom: 5px;
     min-height: 50%;
     background-repeat: no-repeat;
@@ -21,10 +22,19 @@ body {
     color: black;
     padding-bottom: 5px;
     border: 1px solid #3D4A66;
+    
 }
 
-.jumbotron > button {
+.jumbotron button {
     opacity: 0.5;
+}
+
+.jumbotron h1 {
+    font-family: 'Abel', sans-serif;
+}
+
+.jumbotron p {
+   font-family: 'Cinzel', serif;
 }
 
 .col-xs-5ths,
@@ -73,9 +83,17 @@ body.modal-open {
     width: 200px;
     margin-bottom: 10px;
     padding-bottom: 5px;
+    background-color: rgba(255,255,255,0.9);  
+    border-bottom: 1px solid black; 
+    padding-top: 15px
 }
 .grid-item--width2 { width: 400px; }
 
- .white {
-    background-color: rgba(255,255,255,0.9);  
+ .fa {
+color: white;
+font-size:14px;
 } 
+
+.gifTitle {
+    margin-top: 5px;
+}

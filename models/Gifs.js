@@ -2,7 +2,7 @@ let mongoose = require("mongoose");
 mongoose.Promise = global.Promise;
 let Schema = mongoose.Schema;
 
-let RecipeSchema = new Schema({
+let GifSchema = new Schema({
     title: {
         type: String
     },
@@ -10,6 +10,9 @@ let RecipeSchema = new Schema({
         type: String
     },
     thumbnail: {
+        type: String
+    },
+    urlComments: {
         type: String
     },
     redditID: {
@@ -22,7 +25,7 @@ let RecipeSchema = new Schema({
 });
 
 // Create the User model with the UserSchema
-let Recipe = mongoose.model("Recipe", RecipeSchema);
+let Gif = mongoose.model("Gif", GifSchema);
 
 // Export the user model
-module.exports = Recipe;
+module.exports = Gif;
