@@ -1,8 +1,9 @@
 // Masonry Grid Initialization
 $('.grid').masonry({
     itemSelector: '.grid-item',
-    columnWidth: 200
+    columnWidth: 200,
 });
+
 // Grabs Notes from Notes DB
 let getNotes = (event) => {
     let currentNote = $(event.currentTarget).data("id");
@@ -66,8 +67,12 @@ let deleteFavorite = (event) => {
         $('.grid').masonry('layout');
     });
 };
-//Event Delegation
+
+// Event Delegation
 $(".favItems").on("click", ".noteBtn", getNotes);
 $(".favItems").on("click", ".deleteFav", deleteFavorite);
 $(".noteBox").on("click", ".addNoteBtn", addNotes);
 $("body").on("click", ".deleteLine", deleteNote);
+
+// Updates background image on favorite
+$("body").css('background-image', 'url(../assets/css/images/general.jpg)');

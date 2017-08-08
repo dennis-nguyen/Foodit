@@ -59,7 +59,7 @@ let appendGif = (data) => {
         row.append(title);
         $grid.append(row).masonry('reloadItems').masonry("layout");
     });
-    
+
     // Masonry reloads grids since new images are appended
     $grid.imagesLoaded().progress(function () {
         $grid.masonry('layout');

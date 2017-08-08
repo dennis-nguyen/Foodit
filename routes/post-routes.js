@@ -41,6 +41,12 @@ module.exports = function (app) {
             });
         });
     });
+    // Renders About Page
+    app.get('/about', function (req, res) {
+        
+            res.render('about');
+ 
+    });
     // Database Query - All Favorites
     app.get('/favorite/api', function (req, res) {
         Gif.find({}, (error, doc) => {
@@ -124,7 +130,7 @@ let scrapeReddit = (res, url) => {
             let urlComments = $(element).children("div.entry").children("div.top-matter").children("ul.flat-list").children("li.first").children().attr("href");
             // Conditional - makes sure not already a favorited gif & that it links directly to a gif
             let urlSplit = url.split(".");
-            let lastUrlIndex = (urlSplit[urlSplit.length-1]);
+            let lastUrlIndex = (urlSplit[urlSplit.length - 1]);
             if (thumbnail && (duplicateArray.indexOf(dataID) == -1) && (lastUrlIndex == "gif" || lastUrlIndex == "gifv")) {
                 tempArray.push({
                     "title": title,

@@ -34,7 +34,7 @@ app.listen(PORT, function (err) {
 });
 
 // Heroku Mongoose DB Connection
-mongoose.connect('mongodb://heroku_lcx22brw:3oi1sphbf6kuc3504h0t6rpkqv@ds115712.mlab.com:15712/heroku_lcx22brw');
+mongoose.connect('mongodb://heroku_lcx22brw:3oi1sphbf6kuc3504h0t6rpkqv@ds115712.mlab.com:15712/heroku_lcx22brw', {useMongoClient: true});
 
 // Local Mongoose DB Connection
 // mongoose.connect('mongodb://localhost/my_database');
