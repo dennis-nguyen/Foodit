@@ -33,7 +33,7 @@ let appendNotes = (data) => {
     $(".notes-body").empty();
     $(".addNoteBtn").remove();
     $(".notes-title").html(`<h3>${data.title} - Comments</h3>`);
-    $(".noteBox").append(`<button class="btn btn-info addNoteBtn" data-id="${data._id}">Add Note</button>`);
+    $(".noteBox").append(`<button class="btn btn-info addNoteBtn" data-id="${data._id}">Add Comment</button>`);
     data.notes.forEach((singleNote) => {
         let row = $(`<div id="${singleNote._id}" class="row"></div>`);
         let noteLine = $(`<p class="col-lg-10">${singleNote.note}</p>`);
