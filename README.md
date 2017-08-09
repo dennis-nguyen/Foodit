@@ -5,7 +5,7 @@ Are you a gif lover and proud? Do you like collecting things without spending yo
 
 ### Feature List
 - **Jif** pulls from 5 different gif subreddits so users can create a collection of their favorite gifs in once place. 
-- Users can add notes to any of their saved gifs once it is added to the their collection. 
+- Users can add comments to any of their saved gifs once it is added to the their collection. 
 - **Jif** continously scrapes the next page of reddit if the same category button is clicked again.
 - Grid system interface keeps it simple and provides ease of use to users.
 

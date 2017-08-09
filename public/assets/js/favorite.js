@@ -32,7 +32,7 @@ let addNotes = (event) => {
 let appendNotes = (data) => {
     $(".notes-body").empty();
     $(".addNoteBtn").remove();
-    $(".notes-title").html(`<h3>${data.title} Notes</h3>`);
+    $(".notes-title").html(`<h3>${data.title} - Comments</h3>`);
     $(".noteBox").append(`<button class="btn btn-info addNoteBtn" data-id="${data._id}">Add Note</button>`);
     data.notes.forEach((singleNote) => {
         let row = $(`<div id="${singleNote._id}" class="row"></div>`);
